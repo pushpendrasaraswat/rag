@@ -1,2 +1,2 @@
-# rag
+# RAG
 Python RAG implementation
