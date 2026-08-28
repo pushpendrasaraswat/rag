@@ -1,0 +1,58 @@
+Test AI ACADEMY — NEW EMPLOYEE ONBOARDING GUIDE
+Document Version: 1.6
+Last Updated: March 2026
+Owner: People Operations Team
+
+WELCOME TO Test AI ACADEMY
+This guide walks you through your first 30 days at Test AI Academy. Our mission is to make high-quality AI and data science education accessible to working professionals and students, and everything we build — from our courses to our internal tools — reflects that mission.
+
+DAY 1: GETTING STARTED
+- Report to the People Operations desk (or join the virtual welcome call, if remote) at 9:30 AM.
+- Collect your laptop, access badge, and welcome kit.
+- Complete your I-9/identity verification and submit banking details for payroll setup.
+- Your manager will walk you through your 30-60-90 day plan during your first 1:1.
+
+ACCOUNTS AND ACCESS
+New hires are provisioned with the following within the first 2 business days:
+- Company email (firstname.lastname@Testaiacademy.com)
+- Slack workspace access
+- Google Workspace (Docs, Drive, Calendar)
+- Jira and Confluence access (Engineering and Product roles)
+- VPN credentials for accessing internal tools
+- HoursHub for time tracking and LeaveDesk for leave requests
+
+If any access is missing after 3 business days, raise a ticket via the IT Helpdesk portal or contact it-support@Testaiacademy.com.
+
+WEEK 1: ORIENTATION
+- Attend the company-wide orientation session (held every Monday at 10 AM), covering company history, mission, org structure, and key policies.
+- Complete mandatory compliance training: Code of Conduct, Data Privacy, and Workplace Harassment Prevention (POSH), all via the LearnHub portal, due within 7 days of joining.
+- Meet your onboarding buddy, assigned to help you navigate tools, culture, and unwritten norms for your first month.
+- Set up your development environment (for Engineering roles) using the instructions in the `eng-onboarding` repository, or review the curriculum authoring guidelines (for Content/Faculty roles).
+
+WEEK 2-3: ROLE-SPECIFIC RAMP-UP
+Your manager will share a role-specific ramp-up plan. Typical activities include:
+- Shadowing existing team members in meetings and workflows.
+- Reviewing relevant documentation (engineering standards, product knowledge base, security policy — all linked in your onboarding checklist).
+- Completing a small starter project or task, designed to be low-risk and provide hands-on exposure to our tools and codebase.
+- For faculty and content roles: reviewing existing course material and sitting in on at least one live cohort session as an observer.
+
+WEEK 4: 30-DAY CHECK-IN
+At the end of your first month, you'll have a formal check-in with your manager to discuss:
+- Progress against your 30-60-90 day plan.
+- Any blockers, access issues, or support needed.
+- Initial feedback on team processes and tools.
+
+KEY POLICIES TO REVIEW
+All new employees should review the following documents during onboarding, available on the internal wiki:
+- Company HR Policy
+- Engineering Standards (for technical roles)
+- Security Policy
+- Product Knowledge Base (for roles involving customer or learner interaction)
+
+WHO TO CONTACT
+- People Operations: hr@Testaaiacademy.com
+- IT Helpdesk: it-support@Testaiacademy.com
+- Payroll queries: payroll@Testaiacademy.com
+- Your onboarding buddy and reporting manager for day-to-day questions
+
+We're glad to have you on board. Test AI Academy grows because of the people who teach, build, and support our learners — welcome to the team!

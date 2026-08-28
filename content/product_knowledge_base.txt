@@ -1,0 +1,57 @@
+Test AI ACADEMY — PRODUCT KNOWLEDGE BASE
+Document Version: 3.0
+Last Updated: April 2026
+Owner: Product Team
+
+ABOUT Test AI ACADEMY
+Test AI Academy is an ed-tech platform offering cohort-based learning programs in Artificial Intelligence, Machine Learning, and Data Science for working professionals, students, and career-switchers. Our flagship offering combines live instruction, hands-on projects, and mentorship to help learners build real, job-ready skills.
+
+CORE PRODUCT OFFERINGS
+
+1. Cohort-Based Courses
+Live, instructor-led programs delivered over 3 to 12 weeks, capped at 40-50 learners per cohort to preserve interactivity. Sessions are held twice a week (typically evenings, IST) and are recorded for later viewing. Each cohort includes:
+- Live lectures with Q&A
+- Hands-on assignments graded within 5 business days
+- A capstone project reviewed by instructors
+- Access to a private cohort Slack/Discord channel for peer discussion
+
+Current flagship courses include:
+- "Applied Machine Learning for Professionals" (6 weeks)
+- "Retrieval-Augmented Generation (RAG) Systems" (3 weeks)
+- "Data Science Foundations" (8 weeks)
+- "MLOps and Production AI Systems" (4 weeks)
+
+2. Self-Paced Courses
+Pre-recorded video modules with quizzes and auto-graded coding exercises, available for lifetime access after purchase. These are priced lower than cohort programs and serve as an entry point for learners not ready to commit to a live schedule.
+
+3. Mentorship Program
+1:1 mentorship sessions (30 or 60 minutes) with industry practitioners, bookable through the platform's mentorship marketplace. Mentors are vetted by the Academic Team and rated by learners after each session.
+
+4. Career Services
+Available as an add-on to select cohort programs, including resume reviews, mock interviews, and access to a hiring partner network. This is not a placement guarantee and is positioned as "career support," not "job placement," in all learner-facing communication.
+
+PRICING TIERS (INDICATIVE)
+- Self-paced courses: INR 2,999 – INR 7,999
+- Cohort-based courses: INR 15,000 – INR 45,000 depending on duration and career services add-ons
+- Mentorship sessions: INR 999 – INR 2,999 per session depending on mentor seniority
+- Corporate/team licenses: Custom pricing, negotiated by the Enterprise Sales team
+
+REFUND POLICY
+Learners may request a full refund within 7 days of the cohort start date if fewer than 2 live sessions have been attended. After this window, refunds are prorated based on sessions remaining, minus a 10% processing fee. Self-paced course purchases are refundable within 14 days if less than 20% of the content has been consumed.
+
+LEARNING PLATFORM FEATURES
+- Adaptive quizzes that adjust difficulty based on learner performance.
+- Progress dashboard showing module completion, assignment scores, and attendance.
+- Certificate of completion issued upon meeting minimum attendance (70%) and assignment completion (80%) thresholds.
+- Discussion forums per cohort, moderated by teaching assistants.
+
+CUSTOMER SUPPORT
+Learner support is available via in-app chat (9 AM - 9 PM IST, all days) and email at support@Testaiacademy.com, with a target first-response time of 4 hours during support hours. Technical issues (video playback, login) are escalated to the Platform Engineering team with a 24-hour resolution SLA.
+
+KEY METRICS THE PRODUCT TEAM TRACKS
+- Cohort completion rate (target: above 75%)
+- Net Promoter Score (NPS) per cohort, collected via post-course survey
+- Assignment turnaround time for graders
+- Mentorship session repeat-booking rate
+
+For product-related questions, reach out to product@Testaiacademy.com or #product-questions on Slack.

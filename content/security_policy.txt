@@ -1,0 +1,52 @@
+Test AI ACADEMY — SECURITY POLICY
+Document Version: 2.8
+Last Updated: May 2026
+Owner: Information Security Team
+
+1. PURPOSE AND SCOPE
+This policy applies to all employees, contractors, and vendors who access Test AI Academy's systems, data, or facilities. It covers information security practices for protecting company data, learner data, and internal systems from unauthorized access, disclosure, or misuse.
+
+2. ACCOUNT AND ACCESS MANAGEMENT
+- All employees must use Single Sign-On (SSO) with multi-factor authentication (MFA) enabled for all company systems.
+- Access to production systems and learner data follows the principle of least privilege — employees are granted only the access required for their role.
+- Access reviews are conducted quarterly by team leads, and any unused access older than 90 days is automatically revoked.
+- Shared accounts and credentials are prohibited; all access must be individually attributable.
+
+3. PASSWORD AND AUTHENTICATION POLICY
+- Minimum password length: 14 characters, combining uppercase, lowercase, numbers, and special characters.
+- Passwords must be rotated every 180 days for systems that do not support SSO.
+- MFA is mandatory for VPN, email, Google Workspace, GitHub, and all production infrastructure access.
+- Password managers (company-approved: 1Password) are provided to all employees and must be used for storing credentials.
+
+4. DATA CLASSIFICATION AND HANDLING
+Data at Test AI Academy is classified into four tiers:
+- Public: Marketing material, published course descriptions.
+- Internal: Internal documentation, non-sensitive process guides.
+- Confidential: Financial records, employee HR data, unreleased product plans.
+- Restricted: Learner PII (names, contact info, payment details), authentication credentials, model training data containing personal information.
+
+Restricted data must be encrypted at rest (AES-256) and in transit (TLS 1.2+). Access to Restricted data requires explicit approval from the Data Protection Officer and is logged and audited monthly.
+
+5. DEVICE AND ENDPOINT SECURITY
+- All company-issued laptops must have full-disk encryption, endpoint detection and response (EDR) software, and automatic screen lock after 5 minutes of inactivity.
+- Personal devices used to access company email or Slack must be enrolled in the Mobile Device Management (MDM) system.
+- Software installations on company devices outside the approved list require IT Security approval.
+
+6. INCIDENT RESPONSE
+Any suspected security incident — including phishing attempts, lost devices, unauthorized access, or data leaks — must be reported immediately to security@Testaiacademy.com or via the #security-incidents Slack channel. The Security Team follows a 4-phase incident response process: Containment, Investigation, Remediation, and Post-Incident Review. Critical incidents (Severity 1) require executive notification within 2 hours of detection and, where applicable, regulatory notification within statutory timelines.
+
+7. THIRD-PARTY AND VENDOR SECURITY
+All vendors handling Confidential or Restricted data must complete a security questionnaire and sign a Data Processing Agreement (DPA) before integration. Vendor access is reviewed annually, and any vendor found non-compliant with security requirements is subject to immediate access suspension pending remediation.
+
+8. AI AND MODEL SECURITY
+- Training datasets containing learner data must be anonymized or pseudonymized before use in any model development, unless explicit consent has been obtained for personalization features.
+- All AI models exposed via internal or external APIs must have rate limiting and abuse-detection mechanisms in place.
+- Prompt injection and data exfiltration risks must be assessed for any AI feature that processes user-supplied input, as part of the standard security review before launch.
+
+9. SECURITY AWARENESS AND TRAINING
+All employees complete mandatory security awareness training during onboarding and annually thereafter, covering phishing recognition, safe data handling, and incident reporting procedures. Simulated phishing exercises are run quarterly; repeated failures trigger mandatory 1:1 retraining with the Security Team.
+
+10. POLICY VIOLATIONS
+Violations of this security policy may result in disciplinary action, up to and including termination, depending on severity and intent. Deliberate data breaches or unauthorized disclosure of Restricted data will be escalated to legal counsel and may involve regulatory reporting obligations.
+
+For questions regarding this policy, contact security@Testaiacademy.com.

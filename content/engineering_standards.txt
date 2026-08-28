@@ -1,0 +1,55 @@
+Test AI ACADEMY — ENGINEERING STANDARDS AND BEST PRACTICES
+Document Version: 4.1
+Last Updated: February 2026
+Owner: Engineering Leadership Team
+
+1. CODING STANDARDS
+All backend services are written primarily in Python (3.11+) and Go (1.21+). Frontend applications use TypeScript with React. Code must adhere to the following:
+
+- Python code must pass `ruff` linting and `black` formatting checks before merge.
+- Go code must pass `gofmt` and `golangci-lint` checks.
+- All functions and classes require docstrings describing purpose, parameters, and return values.
+- Variable and function names must be descriptive; single-letter variables are only allowed in loop counters or mathematical contexts.
+- Maximum function length is 60 lines; anything longer should be refactored into smaller units.
+
+2. VERSION CONTROL AND BRANCHING
+Test AI Academy follows a trunk-based development model with short-lived feature branches.
+
+- Branch naming convention: `feature/<ticket-id>-short-description`, `bugfix/<ticket-id>-short-description`, `hotfix/<ticket-id>-short-description`.
+- All commits must reference a Jira ticket ID in the commit message.
+- Direct pushes to `main` are disabled; all changes go through pull requests.
+- Feature branches should not live longer than 5 working days to avoid merge conflicts.
+
+3. CODE REVIEW PROCESS
+Every pull request requires a minimum of 2 approvals before merge, at least one of which must be from a senior engineer or tech lead. Reviewers are expected to respond within 24 business hours. Review comments should be constructive and specific, referencing line numbers and suggesting alternatives where applicable.
+
+Pull requests larger than 400 lines of changes (excluding auto-generated files) should be split into smaller, logically separable PRs wherever possible.
+
+4. TESTING REQUIREMENTS
+- Minimum unit test coverage: 80% for all new code, enforced via CI gates.
+- All API endpoints must have integration tests covering success and failure paths.
+- Critical user-facing flows require end-to-end tests using Playwright.
+- Load testing is mandatory for any service expected to handle more than 100 requests per second, using k6 or Locust.
+
+5. CI/CD PIPELINE
+All repositories use GitHub Actions for continuous integration. A standard pipeline includes: lint check, unit tests, security scan (via Trivy), build, and deploy-to-staging. Production deployments require a manual approval gate from the on-call tech lead and are only permitted Monday through Thursday, 10 AM to 4 PM, to ensure adequate support coverage.
+
+6. ARCHITECTURE PRINCIPLES
+- Services should be designed with clear separation of concerns and minimal coupling.
+- Prefer asynchronous communication (message queues) over synchronous calls for non-critical cross-service workflows.
+- All new services must expose health check endpoints (`/healthz`, `/readyz`) for orchestration tooling.
+- Database schema changes must go through a migration tool (Alembic for Python services, golang-migrate for Go services) and be reviewed separately from feature code.
+
+7. DOCUMENTATION
+Every service must maintain a README covering: purpose, local setup instructions, environment variables, and deployment process. API services must publish an OpenAPI/Swagger spec that is kept in sync with the codebase. Architecture Decision Records (ADRs) are required for any change affecting more than one team.
+
+8. ON-CALL AND INCIDENT MANAGEMENT
+Engineers participate in on-call rotations on a weekly basis, coordinated via PagerDuty. Any incident classified as Severity 1 or 2 requires a post-incident review within 3 business days, documented in the incident tracker with root cause, impact, and remediation action items.
+
+9. AI/ML MODEL DEVELOPMENT STANDARDS
+For teams building or fine-tuning models:
+- All experiments must be logged via MLflow, including hyperparameters, dataset version, and evaluation metrics.
+- Model artifacts must be versioned and stored in the internal Model Registry before being considered for production use.
+- Any model deployed to production requires an evaluation report covering accuracy, latency, and bias/fairness checks relevant to the use case.
+
+For questions regarding these standards, contact eng-standards@Testaiacademy.com or #eng-standards on Slack.
