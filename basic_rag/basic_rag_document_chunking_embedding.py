@@ -384,3 +384,4 @@ def ask_rag(question, n_results=3, verbose=True):
 
 ask_rag("WHat is work from home policy?")
 
+ask_rag("INCIDENT RESPONSE")
