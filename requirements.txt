@@ -2,3 +2,6 @@ dotenv
 chromadb
 openai
 sentence_transformers
+chromadb
+matplotlib
+seaborn

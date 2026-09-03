@@ -9,6 +9,14 @@
 #      transformer model
 # ==============================================================================
 
+from openai import OpenAI
+from load_key.load_key import Settings
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+import matplotlib.pyplot as plt
+import seaborn as sns
+from openai.types.chat import (ChatCompletionSystemMessageParam,ChatCompletionUserMessageParam)
+
 
 # ------------------------------------------------------------------------
 # SECTION 1: LOAD RAW DOCUMENTS FROM DISK
@@ -201,3 +209,178 @@ print("#" * 100)
 # embeddings array again for inspection.
 print(len(embeddings[0]))
 print(embeddings)
+
+
+### Ingest Chunks into ChromaDB
+"""
+Creates a Chroma client — your connection/handle to the vector database.
+By default, this is an in-memory, ephemeral database — meaning all data lives in RAM and is lost when your
+Python process ends (no data persists to disk unless you configure persistence explicitly, e.g., chromadb.PersistentClient(path="...")).
+"""
+import chromadb
+chromaClient = chromadb.Client()
+"""
+Creates a collection — think of this like a "table" in a traditional database, but specifically designed to hold:
+Documents (raw text chunks)
+Embeddings (vector representations of those texts)
+Metadata (extra info tags, e.g., source, date, category)
+IDs (unique identifiers for each entry)
+Named 'companyDocs' — likely intended to store chunks of company documents (policies, reports, manuals, etc.) for later retrieval.
+"""
+collection = chromaClient.create_collection(name='companyDocs')
+
+
+
+documents = []
+ids = []
+metadatas = []
+
+for i, chunk in enumerate(all_chunks):
+    documents.append(chunk['text'])
+    ids.append(f"chunk_{i}")
+    metadatas.append({"source": chunk['source']})
+
+print("*"*100)
+print("documents::",  documents[50])
+print("id :: ",ids[50])
+print("metadat :: ",metadatas[50])
+print("*"*100)
+
+# Add all the text chunks to the ChromaDB collection.
+# Chroma will store each document along with its unique ID
+# and the metadata associated with that document.
+#
+# If an embedding function was configured when the collection
+# was created, Chroma will also generate embeddings for these
+# documents automatically.
+
+collection.add(
+    documents=documents,
+    ids=ids,
+    metadatas=metadatas
+)
+print(f"Stored {len(documents)} chunks in chroma db")
+print(f"Sourced from 5 different files")
+
+
+results = collection.peek()
+print(results)
+
+
+### Understanding cosine similarity and Embeddings
+from sentence_transformers import SentenceTransformer
+sentence1 = "I love going out, trekking, riding bikes"
+sentence2 = "I am fond of solo travelling, especially hiking adventurous traits"
+sentence3 = "I hate politics and political news"
+
+model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
+embeddings1 = model.encode(sentence1)
+embeddings2 = model.encode(sentence2)
+embeddings3 = model.encode(sentence3)
+
+print(embeddings1.shape)
+print(embeddings2.shape)
+print(embeddings3.shape)
+
+
+# stack embeddings into a single matrix
+embeddings = np.vstack([embeddings1, embeddings2, embeddings3])
+
+# compute cosine similarity matrix(3 * 3)
+similarity_matrix = cosine_similarity(embeddings)
+print(similarity_matrix)
+
+# labels for readability
+labels = ['Sentence1\n(trekking/biking)', 'Sentence2\n(solo travelling)', 'sentence3\n(politics)']
+
+plt.figure(figsize=(6,5))
+
+sns.heatmap(
+    similarity_matrix,
+    annot=True,
+    fmt='.2f',
+    cmap='coolwarm',
+    xticklabels=labels,
+    yticklabels=labels,
+    vmin=0,vmax=1,
+    square=True
+
+)
+
+plt.title('Cosine Similarity between sentences')
+plt.tight_layout()
+plt.show()
+
+
+### Retriever Pipeline
+def retrieve(question, n_results=3):
+    results = collection.query(
+        query_texts=[question],
+        n_results=n_results
+    )
+
+    return results['documents'][0], results['metadatas'][0]
+
+
+chunks, sources = retrieve("What is the work from home policy?", 3)
+
+print(chunks)
+print('='*60)
+print(sources)
+
+
+### Create RAG Pipeline
+Settings.validate()
+client = OpenAI(
+    api_key=Settings.GEMINI_API_KEY,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+def ask_rag(question, n_results=3, verbose=True):
+    chunks, sources = retrieve(question, n_results)
+
+    if verbose:
+        print(f"\n{'=' * 60}")
+        print(f"Question: {question}")
+        print(f"{'-' * 60}")
+        print(f"Retrieved {len(chunks)} chunks")
+
+        for i, (chunk, source) in enumerate(zip(chunks,sources)):
+            print(f"[{source['source']}]  {chunk}...")
+        print(f"{'-' * 60}")
+
+    context = '\n\n'.join(chunks)
+    messages = [
+        ChatCompletionSystemMessageParam(
+            role="system",
+            content='''
+                    You are a helpful company assistant. Answer questions using only the provided context.
+                    If the context does not contain the answer, say I dont know or i dont have enough information to answer this
+                    Be concise
+                '''
+        ),
+        ChatCompletionUserMessageParam(
+            role="user",
+            content= f"Context:\n{context}\n\n Question: {question}"
+        )
+    ]
+
+
+
+    response = client.chat.completions.create(
+    model="gemini-3.6-flash",
+    messages=messages
+    )
+
+    answer = response.choices[0].message.content
+
+    if verbose:
+        print(f"Answer: {answer}")
+        print(f"{'-' * 60}")
+
+    return answer
+
+
+
+ask_rag("WHat is work from home policy?")
+
