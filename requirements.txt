@@ -5,3 +5,4 @@ sentence_transformers
 chromadb
 matplotlib
 seaborn
+langchain_text_splitters
